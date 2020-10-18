@@ -1,5 +1,5 @@
 import {
-    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    ResponsiveContainer, ComposedChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import styles from './charting.module.scss';
 
@@ -43,13 +43,13 @@ const Charting = (props) => {
     const uptime = [];
     data.forEach((beat) => {
         for (let i = 0; i < uptime.length; i++) {
-            if (uptime[i].uptime === beat.uptime) {
+            if (Math.round(uptime[i].uptime / 1000 / 60) === Math.round(beat.uptime / 1000 / 60)) {
                 uptime[i].servers += 1;
                 return;
             }
         }
         uptime.push({
-            uptime: beat.uptime,
+            uptime: Math.round(beat.uptime / 1000 / 60),
             servers: 1
         });
     });
@@ -58,59 +58,59 @@ const Charting = (props) => {
         <div className={styles.container}>
             <div>
                 <h2>Versions</h2>
-                <BarChart
-                    width={500}
-                    height={300}
-                    data={versions}
-                    margin={{
-                        top: 5, right: 30, left: 20, bottom: 5,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="version" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="servers" fill="#82ca9d" />
-                </BarChart>
+                <ResponsiveContainer>
+                    <ComposedChart
+                        data={versions}
+                        margin={{
+                            top: 5, right: 30, left: 20, bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="version" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="servers" fill="#82ca9d" />
+                    </ComposedChart>
+                </ResponsiveContainer>
             </div>
 
             <div>
                 <h2>TPS</h2>
-                <BarChart
-                    width={500}
-                    height={300}
-                    data={tps}
-                    margin={{
-                        top: 5, right: 30, left: 20, bottom: 5,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="tps" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="servers" fill="#82ca9d" />
-                </BarChart>
+                <ResponsiveContainer>
+                    <ComposedChart
+                        data={tps}
+                        margin={{
+                            top: 5, right: 30, left: 20, bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="tps" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="servers" fill="#82ca9d" />
+                    </ComposedChart>
+                </ResponsiveContainer>
             </div>
 
             <div>
                 <h2>Uptime</h2>
-                <BarChart
-                    width={500}
-                    height={300}
-                    data={uptime}
-                    margin={{
-                        top: 5, right: 30, left: 20, bottom: 5,
-                    }}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="uptime" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="servers" fill="#82ca9d" />
-                </BarChart>
+                <ResponsiveContainer>
+                    <ComposedChart
+                        data={uptime}
+                        margin={{
+                            top: 5, right: 30, left: 20, bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="uptime" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="servers" fill="#82ca9d" />
+                    </ComposedChart>
+                </ResponsiveContainer>
             </div>
         </div>
     );

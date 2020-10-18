@@ -1,6 +1,16 @@
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2rem;
+    padding-bottom: 2rem;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 24rem;
+    }
 
     @media (max-width: 1424px) {
         grid-template-columns: 1fr 1fr;

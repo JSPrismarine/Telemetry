@@ -7,11 +7,11 @@ const GraphsPage = () => {
 
     return (
         <div>
-            <h1>All-time</h1>
-            <Charting data={alltime?.heartbeats} />
-
             <h1>Alive</h1>
             <Charting data={alive?.heartbeats} />
+            
+            <h1>All-time</h1>
+            <Charting data={alltime?.heartbeats} />
         </div>
     );
 };
