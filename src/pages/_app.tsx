@@ -1,8 +1,11 @@
 import React from 'react';
+import PageProvider from '../components/pageprovider';
 
 const App = ({ Component, pageProps }) => {
     return (
-        <Component {...pageProps} />
+        <PageProvider>
+            <Component {...pageProps} />
+        </PageProvider>
     );
 };
 
