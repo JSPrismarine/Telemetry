@@ -9,7 +9,7 @@ const AliveHeartbeatRoute = async ({ body, method }, res) => {
         timestamp: {
             $gte: date
         }
-    }, null, { sort: { '_id': -1 } });
+    }, null, { sort: { timestamp: 1 } });
 
     res.status(200).send({
         heartbeats: heartbeats.map(heartbeat => ({

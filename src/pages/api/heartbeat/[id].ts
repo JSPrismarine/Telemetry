@@ -4,7 +4,7 @@ import Heartbeat from '../../../models/heartbeat';
 const AliveHeartbeatRoute = async ({ body, method, query }, res) => {
     const heartbeats = await Heartbeat.find({
         id: query.id
-    }, null, { sort: { '_id': -1 } });
+    }, null, { sort: { date: 1 } });
 
     res.status(200).send({
         heartbeats: heartbeats.map(heartbeat => ({

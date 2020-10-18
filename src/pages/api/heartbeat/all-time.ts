@@ -2,7 +2,7 @@ import withConnect from "../../../hoc/withConnect";
 import Heartbeat from '../../../models/heartbeat';
 
 const AllTimeHeartbeatRoute = async ({ body, method }, res) => {
-    const heartbeats = await Heartbeat.find({}, null, { sort: { '_id': -1 } });
+    const heartbeats = await Heartbeat.find({}, null, { sort: { timestamp: 1 } });
 
     res.status(200).send({
         heartbeats: heartbeats.map(heartbeat => ({
