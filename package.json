@@ -24,7 +24,7 @@
     "swr": "^0.3.5"
   },
   "devDependencies": {
-    "@types/enzyme": "3.10.5",
+    "@types/enzyme": "3.10.8",
     "@types/jest": "26.0.13",
     "@types/mongoose": "^5.7.36",
     "@types/next": "^9.0.0",
