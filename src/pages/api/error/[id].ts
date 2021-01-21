@@ -1,5 +1,5 @@
-import Error from '../../../../models/error';
-import withConnect from '../../../../hoc/withConnect';
+import Error from '../../../models/error';
+import withConnect from '../../../hoc/withConnect';
 
 const AliveHeartbeatRoute = async ({ body, method, query }, res) => {
     const error = await Error.findOne({

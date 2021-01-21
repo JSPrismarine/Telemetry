@@ -6,8 +6,8 @@ const ErrorRoute = async ({ body, method }, res) => {
         const errors = await Error.find({}, null, { sort: { _id: -1 } });
 
         res.status(200).send({
-            errors: errors.map((heartbeat) => ({
-                ...heartbeat.toObject(),
+            errors: errors.map((error) => ({
+                ...error.toObject(),
                 _id: undefined
             }))
         });
