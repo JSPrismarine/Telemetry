@@ -1,12 +1,12 @@
-import withConnect from "../../../hoc/withConnect";
 import Heartbeat from '../../../models/heartbeat';
+import withConnect from '../../../hoc/withConnect';
 
 const HeartbeatRoute = async ({ body, method }, res) => {
     if (method === 'GET') {
-        const heartbeats = await Heartbeat.find({}, null, {sort: {'_id': -1}});
+        const heartbeats = await Heartbeat.find({}, null, { sort: { _id: -1 } });
 
         res.status(200).send({
-            heartbeats: heartbeats.map(heartbeat => ({
+            heartbeats: heartbeats.map((heartbeat) => ({
                 ...heartbeat.toObject(),
                 _id: undefined
             }))
@@ -15,7 +15,7 @@ const HeartbeatRoute = async ({ body, method }, res) => {
     }
 
     const heartbeat = new Heartbeat({
-        ...body,
+        ...body
     });
     await heartbeat.save();
 
