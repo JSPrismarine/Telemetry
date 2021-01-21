@@ -1,0 +1,21 @@
+{
+    "presets": [
+        [
+            "next/babel",
+            {
+                "preset-env": {
+                    "targets": {
+                        "browsers": [
+                            "since 2008",
+                            "ie 11",
+                            "ie_mob 11"
+                        ]
+                    },
+                    "modules": "commonjs",
+                    "useBuiltIns": "entry",
+                    "corejs": "3"
+                }
+            }
+        ]
+    ]
+}
