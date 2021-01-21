@@ -1,7 +1,8 @@
-import React from 'react';
-import Head from 'next/head'
-import PageProvider from '../components/pageprovider';
 import '../scss/_app.scss';
+
+import Head from 'next/head';
+import PageProvider from '../components/pageprovider';
+import React from 'react';
 
 const App = ({ Component, pageProps }) => {
     return (
@@ -12,6 +13,11 @@ const App = ({ Component, pageProps }) => {
             <Component {...pageProps} />
         </PageProvider>
     );
+};
+
+// Temp disable ssr
+App.getInitialProps = async (ctx) => {
+    return {};
 };
 
 export default App;
