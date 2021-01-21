@@ -3,7 +3,7 @@ import useSWR from 'swr';
 
 const ErrorPage = () => {
     const router = useRouter();
-    const { data } = useSWR(`/api/error}`);
+    const { data } = useSWR(`/api/error`);
 
     return (
         <div>
