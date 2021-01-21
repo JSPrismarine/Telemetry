@@ -7,7 +7,7 @@ const ErrorPage = () => {
 
     return (
         <div>
-            {data.errors.map((error) => (
+            {data?.errors?.map?.((error) => (
                 <Link key={error.id} href={`/error/${error.id}`}></Link>
             ))}
         </div>
