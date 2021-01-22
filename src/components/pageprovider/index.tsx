@@ -1,19 +1,33 @@
 import Header from '../header';
-import styles from './pageprovider.module.scss';
+import styled from 'styled-components';
+
+const Container = styled.div`
+    max-width: 100vw;
+`;
+
+const Content = styled.div`
+    padding: 0.5rem;
+    min-height: calc(100vh - 6rem);
+`;
+
+const Footer = styled.footer`
+    text-align: center;
+    font-size: 0.75rem;
+`;
 
 const PageProvider = ({ children }) => {
     return (
-        <div className={styles.container}>
+        <Container>
             <Header />
-            <div className={styles.content}>{children}</div>
-            <footer>
+            <Content>{children}</Content>
+            <Footer>
                 <span>&copy; 2020-2021 the JSPrismarine development team</span>
                 {' - '}
                 <span>
                     Built by <a href="https://github.com/filfat">Filiph Sandström</a>
                 </span>
-            </footer>
-        </div>
+            </Footer>
+        </Container>
     );
 };
 

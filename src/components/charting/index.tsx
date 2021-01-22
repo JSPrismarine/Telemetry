@@ -12,7 +12,42 @@ import {
     YAxis
 } from 'recharts';
 
-import styles from './charting.module.scss';
+import styled from 'styled-components';
+
+const Container = styled.div`
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 18rem;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    height: 18rem;
+    width: 100%;
+    padding: 0.5rem 0px;
+    text-transform: uppercase;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        min-width: 18rem;
+        background: #efefef;
+        border-radius: 0.25rem;
+        border: 0.15rem solid #efefef;
+
+        h2 {
+            align-self: flex-start;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+            font-weight: 400;
+            line-height: 1.5rem;
+            color: #333;
+        }
+    }
+`;
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#c53bd1', '#82ca9d'];
 
@@ -71,7 +106,7 @@ const Charting = (props) => {
     });
 
     return (
-        <div className={styles.container}>
+        <Container>
             <div>
                 <ResponsiveContainer>
                     <PieChart>
@@ -109,7 +144,7 @@ const Charting = (props) => {
                     </ComposedChart>
                 </ResponsiveContainer>
             </div>
-        </div>
+        </Container>
     );
 };
 

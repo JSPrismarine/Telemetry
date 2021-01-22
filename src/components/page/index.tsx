@@ -1,10 +1,22 @@
-import styles from './page.module.scss';
+import styled from 'styled-components';
+
+const Main = styled.main`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`;
+
+const Content = styled.div`
+    padding: 0px 0.5rem;
+    max-width: 1248px;
+    width: 100vw;
+`;
 
 const Page = ({ children }) => {
     return (
-        <main className={styles.container}>
-            <div className={styles.content}>{children}</div>
-        </main>
+        <Main>
+            <Content>{children}</Content>
+        </Main>
     );
 };
 
