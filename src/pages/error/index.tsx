@@ -55,7 +55,7 @@ const ErrorPage = () => {
             <List>
                 {data?.errors?.map?.((entry) => (
                     <Link key={entry.id} href={`/error/${entry.id}`} passHref>
-                        <ListEntry key={entry.id}>
+                        <ListEntry>
                             <div>{moment(entry.timestamp).format('MM/DD/YYYY MM:HH:SS')}</div>
                             <b>{entry.error.name}</b>
                             <code>{entry.error.message}</code>
