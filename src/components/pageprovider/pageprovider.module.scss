@@ -3,5 +3,11 @@
 
     .content {
         padding: 0.5rem;
+        min-height: calc(100vh - 6rem);
+    }
+
+    footer {
+        text-align: center;
+        font-size: 0.75rem;
     }
 }

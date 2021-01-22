@@ -8,7 +8,7 @@ const LoaderWrapper = styled.div`
     align-items: center;
     flex-grow: 1;
     width: 100%;
-    min-height: calc(100vh - 6rem);
+    min-height: calc(100vh - 12rem);
 `;
 
 const LoaderComponent = () => {
