@@ -13,9 +13,9 @@ const ListEntry = styled.a`
     display: grid;
     grid-template-columns: auto 1fr 8fr;
     grid-gap: 0.5rem;
-    align-items: center;
-    height: 3.5rem;
-    padding: 0px 1rem;
+    min-height: 3.5rem;
+    max-width: 100%;
+    padding: 0.5rem;
     background: #efefef;
     border-radius: 0.25rem;
     border: 0.15rem solid #efefef;
@@ -24,6 +24,14 @@ const ListEntry = styled.a`
     color: #000;
     text-decoration: none;
     text-overflow: ellipsis;
+
+    @media (max-width: 960px) {
+        grid-template-columns: auto;
+
+        div {
+            display: none;
+        }
+    }
 
     &:hover {
         border: 0.15rem solid #63988d;

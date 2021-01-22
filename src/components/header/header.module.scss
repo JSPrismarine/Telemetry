@@ -5,15 +5,37 @@
     padding: 1.5rem;
     background: #63988d;
 
+    @media (max-width: 960px) {
+        grid-template-columns: 1fr;
+        padding: 0px;
+    }
+
     .logo {
+        text-transform: uppercase;
         color: #fff;
+
+        @media (max-width: 960px) {
+            width: 100vw;
+            padding: 1rem;
+            text-align: center;
+        }
     }
 
     nav {
         display: flex;
+        gap: 1rem;
+
+        @media (max-width: 960px) {
+            overflow-x: auto;
+            justify-content: center;
+            min-width: 100vw;
+            height: 2.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            line-height: 2.5rem;
+            font-weight: 500;
+        }
 
         a {
-            margin-left: 1rem;
             text-decoration: none;
             text-transform: uppercase;
             color: #fff;
