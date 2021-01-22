@@ -1,3 +1,4 @@
+import Charting from '../components/charting';
 import LoaderComponent from '../components/loader';
 import Page from '../components/page';
 import styled from 'styled-components';
@@ -42,6 +43,8 @@ const InfoBlock = styled.div`
 const IndexPage = () => {
     const { data: alive } = useSWR('/api/heartbeat/alive');
     const { data: allTime } = useSWR('/api/heartbeat/all-time');
+    const { data: errorsData } = useSWR('/api/error');
+    const errors = errorsData?.errors;
 
     if (!allTime || !alive) return <LoaderComponent />;
 
@@ -74,6 +77,34 @@ const IndexPage = () => {
                                 100
                         ) / 100 || '...'}
                     </span>
+                </InfoBlock>
+            </InfoBlocksWrapper>
+            <div>
+                <Charting data={alive?.heartbeats} compare={allTime?.heartbeats} />
+            </div>
+            <InfoBlocksWrapper>
+                <InfoBlock>
+                    <div>Crashes (24hrs)</div>
+                    <span>
+                        {errors?.filter(
+                            (a) =>
+                                Date.now() - new Date(a.timestamp).getTime() < 24 * 60 * 60 * 1000
+                        ).length ?? '...'}
+                    </span>
+                </InfoBlock>
+                <InfoBlock>
+                    <div>Crashes (7d)</div>
+                    <span>
+                        {errors?.filter(
+                            (a) =>
+                                Date.now() - new Date(a.timestamp).getTime() <
+                                7 * 24 * 60 * 60 * 1000
+                        ).length ?? '...'}
+                    </span>
+                </InfoBlock>
+                <InfoBlock>
+                    <div>Crashes (total)</div>
+                    <span>{errors?.length ?? '...'}</span>
                 </InfoBlock>
             </InfoBlocksWrapper>
         </Page>
