@@ -1,8 +1,15 @@
 import '../scss/_app.scss';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 import Head from 'next/head';
+import NProgress from 'nprogress';
 import PageProvider from '../components/pageprovider';
 import React from 'react';
+import Router from 'next/router';
+
+Router.events.on('routeChangeStart', (url) => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 const App = ({ Component, pageProps }) => {
     return (

@@ -1,3 +1,4 @@
+import LoaderComponent from '../components/loader';
 import Page from '../components/page';
 import styled from 'styled-components';
 import useSWR from 'swr';
@@ -41,6 +42,8 @@ const InfoBlock = styled.div`
 const IndexPage = () => {
     const { data: alive } = useSWR('/api/heartbeat/alive');
     const { data: allTime } = useSWR('/api/heartbeat/all-time');
+
+    if (!allTime || !alive) return <LoaderComponent />;
 
     return (
         <Page>
