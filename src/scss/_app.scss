@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
-html, body {
+html,
+body {
     margin: 0px;
     font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
 }
 
-h1, h2 {
+* {
+    box-sizing: border-box;
+}
+
+h1 {
     margin: 0px;
     text-transform: uppercase;
     font-weight: 400;
+    font-size: 1.75rem;
 }

@@ -15,9 +15,4 @@ const App = ({ Component, pageProps }) => {
     );
 };
 
-// Temp disable ssr
-App.getInitialProps = async (ctx) => {
-    return {};
-};
-
 export default App;

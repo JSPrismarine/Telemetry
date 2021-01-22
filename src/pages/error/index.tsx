@@ -1,25 +1,49 @@
-import Link from 'next/link';
 import Page from '../../components/page';
 import moment from 'moment';
+import styled from 'styled-components';
 import useSWR from 'swr';
+
+const List = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.5rem;
+`;
+
+const ListEntry = styled.a`
+    display: grid;
+    grid-template-columns: auto 1fr 8fr;
+    grid-gap: 0.5rem;
+    align-items: center;
+    height: 3.5rem;
+    padding: 0px 1rem;
+    background: #efefef;
+    border-radius: 0.25rem;
+    border: 0.15rem solid #efefef;
+    cursor: pointer;
+    transition: 250ms;
+    color: #000;
+    text-decoration: none;
+    text-overflow: ellipsis;
+
+    &:hover {
+        border: 0.15rem solid #63988d;
+    }
+`;
 
 const ErrorPage = () => {
     const { data } = useSWR(`/api/error`);
 
     return (
         <Page>
-            <ul>
+            <List>
                 {data?.errors?.map?.((entry) => (
-                    <li key={entry.id}>
-                        <Link href={`/error/${entry.id}`} passHref>
-                            <a>
-                                {moment(entry.timestamp).format('MM/DD/YYYY MM:HH:SS.SSS')} -{' '}
-                                <b>{entry.error.name}</b>: <code>{entry.error.message}</code>
-                            </a>
-                        </Link>
-                    </li>
+                    <ListEntry key={entry.id} href={`/error/${entry.id}`}>
+                        <div>{moment(entry.timestamp).format('MM/DD/YYYY MM:HH:SS')}</div>
+                        <b>{entry.error.name}</b>
+                        <code>{entry.error.message}</code>
+                    </ListEntry>
                 ))}
-            </ul>
+            </List>
         </Page>
     );
 };
