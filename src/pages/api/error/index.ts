@@ -7,8 +7,7 @@ const ErrorRoute = async ({ body, method }, res) => {
 
         res.status(200).send({
             errors: errors.map((error) => ({
-                ...error.toObject(),
-                _id: undefined
+                ...error.toObject()
             }))
         });
         return;
@@ -20,7 +19,8 @@ const ErrorRoute = async ({ body, method }, res) => {
     await error.save();
 
     res.status(200).send({
-        ...error.toObject()
+        ...error.toObject(),
+        id: error._id
     });
 };
 
