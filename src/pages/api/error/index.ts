@@ -19,7 +19,8 @@ const ErrorRoute = async ({ body, method }, res) => {
     await error.save();
 
     res.status(200).send({
-        ...error.toObject()
+        ...error.toObject(),
+        id: error._id
     });
 };
 
