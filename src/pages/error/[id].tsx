@@ -1,4 +1,3 @@
-import DefaultErrorPage from 'next/error';
 import ErrorApi from '../api/error/[id]';
 import ErrorsApi from '../api/error';
 import { NextSeo } from 'next-seo';
@@ -33,8 +32,6 @@ const CreateIssue = styled.a`
 
 const ServerPage = ({ data }) => {
     const entry = data?.error;
-
-    if (!entry) return <DefaultErrorPage statusCode={404} />;
 
     return (
         <Page>
@@ -92,7 +89,8 @@ export async function getStaticPaths() {
                 params: { id: `${error._id}` }
             }))
             .filter((a) => a.params.id),
-        fallback: true
+        fallback: true,
+        notFound: true
     };
 }
 
