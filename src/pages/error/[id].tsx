@@ -89,8 +89,7 @@ export async function getStaticPaths() {
                 params: { id: `${error._id}` }
             }))
             .filter((a) => a.params.id),
-        fallback: true,
-        notFound: true
+        fallback: true
     };
 }
 
