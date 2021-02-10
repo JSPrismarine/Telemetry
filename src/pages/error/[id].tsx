@@ -39,7 +39,7 @@ const ServerPage = ({ data }) => {
     return (
         <Page>
             <NextSeo
-                title={`${entry?.error?.name} - JSPrismarine Telemetry`}
+                title={`${entry.error.message} - JSPrismarine Telemetry`}
                 description={entry?.error?.stack}
             />
 
