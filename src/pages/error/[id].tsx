@@ -32,11 +32,12 @@ const CreateIssue = styled.a`
 
 const ServerPage = ({ data }) => {
     const entry = data?.error;
+    console.log(entry);
 
     return (
         <Page>
             <NextSeo
-                title={`${entry.error.message} - JSPrismarine Telemetry`}
+                title={`${entry?.error?.message} - JSPrismarine Telemetry`}
                 description={entry?.error?.stack}
             />
 
