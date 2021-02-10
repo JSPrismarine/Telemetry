@@ -1,5 +1,3 @@
-import Loader from 'react-loader-spinner';
-import Page from './page';
 import styled from 'styled-components';
 
 const LoaderWrapper = styled.div`
@@ -12,11 +10,7 @@ const LoaderWrapper = styled.div`
 `;
 
 const LoaderComponent = () => {
-    return (
-        <LoaderWrapper>
-            <Loader type="TailSpin" color="#63988d" height={100} width={100} />
-        </LoaderWrapper>
-    );
+    return <LoaderWrapper>Loading...</LoaderWrapper>;
 };
 
 export default LoaderComponent;

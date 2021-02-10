@@ -8,8 +8,6 @@ import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import moment from 'moment';
 import newIssue from 'new-github-issue-url';
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
-import useSWR from 'swr';
 
 const ErrorHeader = styled.h1``;
 const ErrorVersion = styled.div`
@@ -33,9 +31,7 @@ const CreateIssue = styled.a`
     color: #fff;
 `;
 
-const ServerPage = () => {
-    const router = useRouter();
-    const { data } = useSWR(`/api/error/${router.query.id}`);
+const ServerPage = ({ data }) => {
     const entry = data?.error;
 
     if (!entry) return <DefaultErrorPage statusCode={404} />;

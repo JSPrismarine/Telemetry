@@ -1,5 +1,4 @@
 import '../scss/_app.scss';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 import Head from 'next/head';
 import NProgress from 'nprogress';
