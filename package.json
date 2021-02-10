@@ -23,6 +23,7 @@
         "mongoose": "^5.10.9",
         "new-github-issue-url": "^0.2.1",
         "next": "^9.5.5",
+        "next-seo": "^4.19.0",
         "nprogress": "^0.2.0",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",

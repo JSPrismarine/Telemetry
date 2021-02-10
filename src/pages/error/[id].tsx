@@ -1,4 +1,7 @@
-import LoaderComponent from '../../components/loader';
+import DefaultErrorPage from 'next/error';
+import ErrorApi from '../api/error/[id]';
+import ErrorsApi from '../api/error';
+import { NextSeo } from 'next-seo';
 import Page from '../../components/page';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
@@ -35,10 +38,15 @@ const ServerPage = () => {
     const { data } = useSWR(`/api/error/${router.query.id}`);
     const entry = data?.error;
 
-    if (!entry) return <LoaderComponent />;
+    if (!entry) return <DefaultErrorPage statusCode={404} />;
 
     return (
         <Page>
+            <NextSeo
+                title={`${entry?.error?.name} - JSPrismarine Telemetry`}
+                description={entry?.error?.stack}
+            />
+
             <ErrorHeader>Error: {entry?.error?.name}</ErrorHeader>
             <ErrorDate>{moment(entry?.timestamp).format('LLLL')}</ErrorDate>
             <ErrorVersion>
@@ -73,5 +81,49 @@ const ServerPage = () => {
         </Page>
     );
 };
+
+export async function getStaticPaths() {
+    const errors = await ErrorsApi(
+        {
+            method: 'GET'
+        },
+        null
+    );
+
+    return {
+        paths: errors
+            ?.map((error) => ({
+                params: { id: `${error._id}` }
+            }))
+            .filter((a) => a.params.id),
+        fallback: true
+    };
+}
+
+export async function getStaticProps({ params }) {
+    try {
+        return {
+            props: {
+                data: {
+                    error:
+                        (await ErrorApi(
+                            {
+                                query: {
+                                    id: params?.id?.join('')
+                                }
+                            },
+                            null
+                        )) ?? null
+                }
+            },
+            revalidate: 1
+        };
+    } catch (err) {
+        return {
+            props: {},
+            revalidate: 1
+        };
+    }
+}
 
 export default ServerPage;

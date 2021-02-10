@@ -6,9 +6,11 @@ const AliveHeartbeatRoute = async ({ body, method, query }, res) => {
         _id: query.id
     });
 
-    res.status(200).send({
+    res?.status(200)?.send({
         error
     });
+
+    return error;
 };
 
 export default withConnect(AliveHeartbeatRoute);
