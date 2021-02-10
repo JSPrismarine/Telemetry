@@ -40,10 +40,16 @@ const InfoBlock = styled.div`
     }
 `;
 
-const IndexPage = () => {
-    const { data: alive } = useSWR('/api/heartbeat/alive');
-    const { data: allTime } = useSWR('/api/heartbeat/all-time');
-    const { data: errorsData } = useSWR('/api/error');
+const IndexPage = ({ data }) => {
+    const { data: alive } = useSWR('/api/heartbeat/alive', {
+        initialData: data.alive
+    });
+    const { data: allTime } = useSWR('/api/heartbeat/all-time', {
+        initialData: data.allTime
+    });
+    const { data: errorsData } = useSWR('/api/error', {
+        initialData: data.errors
+    });
     const errors = errorsData?.errors;
 
     if (!allTime || !alive) return <LoaderComponent />;
