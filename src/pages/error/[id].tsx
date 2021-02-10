@@ -32,7 +32,6 @@ const CreateIssue = styled.a`
 
 const ServerPage = ({ data }) => {
     const entry = data?.error;
-    console.log(entry);
 
     return (
         <Page>
@@ -96,26 +95,30 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     try {
+        const error =
+            (await ErrorApi(
+                {
+                    method: 'GET',
+                    query: {
+                        id: params.id
+                    }
+                },
+                null
+            )) ?? null;
+
         return {
             props: {
                 data: {
-                    error:
-                        (await ErrorApi(
-                            {
-                                query: {
-                                    id: params?.id?.join('')
-                                }
-                            },
-                            null
-                        )) ?? null
+                    error: JSON.parse(JSON.stringify(error)) // Hack to stop next from complaining
                 }
             },
-            revalidate: 1
+            revalidate: 10
         };
-    } catch (err) {
+    } catch (error) {
+        console.error(error);
         return {
             props: {},
-            revalidate: 1
+            revalidate: 10
         };
     }
 }
