@@ -1,3 +1,4 @@
+import DefaultError from 'next/error';
 import ErrorApi from '../api/error/[id]';
 import ErrorsApi from '../api/error';
 import { NextSeo } from 'next-seo';
@@ -32,6 +33,8 @@ const CreateIssue = styled.a`
 
 const ServerPage = ({ data }) => {
     const entry = data?.error;
+
+    if (!entry) return <DefaultError statusCode={404} />;
 
     return (
         <Page>
