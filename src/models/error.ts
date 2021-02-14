@@ -22,6 +22,10 @@ const Error = new Schema(
             stack: {
                 type: String,
                 required: true
+            },
+            log: {
+                type: String,
+                required: false
             }
         },
         timestamp: {
