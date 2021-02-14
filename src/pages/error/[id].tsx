@@ -56,7 +56,16 @@ const ServerPage = ({ data }) => {
                     style={materialDark}
                     language="javastacktrace"
                 >
-                    {entry?.error?.stack || ''}
+                    {entry?.error?.stack || 'No stacktrace.'}
+                </SyntaxHighlighter>
+            </CodeWrapper>
+        
+            <CodeWrapper>
+                <SyntaxHighlighter
+                    showLineNumbers
+                    wrapLongLines
+                    style={materialDark}>
+                    {entry?.error?.log || 'No log.'}
                 </SyntaxHighlighter>
             </CodeWrapper>
 
