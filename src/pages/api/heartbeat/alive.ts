@@ -3,7 +3,7 @@ import withConnect from '../../../hoc/withConnect';
 
 const AliveHeartbeatRoute = async ({ body, method }, res) => {
     const date = new Date();
-    date.setMinutes(date.getMinutes() - 10);
+    date.setMinutes(date.getMinutes() - 5);
 
     const heartbeats = await Heartbeat.find(
         {
@@ -13,7 +13,7 @@ const AliveHeartbeatRoute = async ({ body, method }, res) => {
         },
         null,
         { sort: { timestamp: 1 } }
-    );
+    ).exec();
 
     const unique = heartbeats
         .map((heartbeat) => ({
@@ -24,9 +24,12 @@ const AliveHeartbeatRoute = async ({ body, method }, res) => {
             return [...removed, item];
         }, []);
 
-    res.status(200).send({
+    const result = {
         heartbeats: unique
-    });
+    };
+    res?.status(200)?.send(result);
+
+    return result;
 };
 
 export default withConnect(AliveHeartbeatRoute);

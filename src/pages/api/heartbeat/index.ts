@@ -3,7 +3,9 @@ import withConnect from '../../../hoc/withConnect';
 
 const HeartbeatRoute = async ({ body, method }, res) => {
     if (method === 'GET') {
-        const heartbeats = await Heartbeat.find({}, null, { sort: { _id: -1 } });
+        const heartbeats = await Heartbeat.find({}, null, { sort: { _id: -1 } })
+            .limit(2500)
+            .exec();
 
         res.status(200).send({
             heartbeats: heartbeats.map((heartbeat) => ({

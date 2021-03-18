@@ -1,17 +1,24 @@
-import withConnect from "../../../hoc/withConnect";
 import Heartbeat from '../../../models/heartbeat';
+import withConnect from '../../../hoc/withConnect';
 
 const AllTimeHeartbeatRoute = async ({ body, method }, res) => {
-    const heartbeats = await Heartbeat.find({}, null, { sort: { timestamp: 1 } });
+    const heartbeats = await Heartbeat.find({}, null, { sort: { timestamp: 1 } })
+        .limit(2500) // TODO: fix this
+        .exec();
 
-    res.status(200).send({
-        heartbeats: heartbeats.map(heartbeat => ({
-            ...heartbeat.toObject()
-        })).reduce((arr, item) => {
-            const removed = arr.filter(i => i.id !== item.id);
-            return [...removed, item];
-        }, [])
-    });
+    const result = {
+        heartbeats: heartbeats
+            .map((heartbeat) => ({
+                ...heartbeat.toObject(),
+                _id: heartbeat._id.toString()
+            }))
+            .reduce((arr, item) => {
+                const removed = arr.filter((i) => i.id !== item.id);
+                return [...removed, item];
+            }, [])
+    };
+    res?.status(200).send(result);
+    return result;
 };
 
 export default withConnect(AllTimeHeartbeatRoute);

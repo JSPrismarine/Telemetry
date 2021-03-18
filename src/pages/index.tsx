@@ -1,6 +1,9 @@
 import Charting from '../components/charting';
 import LoaderComponent from '../components/loader';
 import Page from '../components/page';
+import aliveRoute from './api/heartbeat/alive';
+import allTimeRoute from './api/heartbeat/all-time';
+import errorsRoute from './api/error';
 import styled from 'styled-components';
 import useSWR from 'swr';
 
@@ -41,19 +44,15 @@ const InfoBlock = styled.div`
 `;
 
 const IndexPage = ({ data }) => {
-    const { data: alive } = useSWR(
-        '/api/heartbeat/alive' /*, {
+    const { data: alive } = useSWR('/api/heartbeat/alive', {
         initialData: data.alive
-    }*/
-    );
-    const { data: allTime } = useSWR(
-        '/api/heartbeat/all-time' /*, {
+    });
+    const { data: allTime } = useSWR('/api/heartbeat/all-time', {
         initialData: data.allTime
-    }*/
-    );
-    const { data: errorsData } = useSWR('/api/error' /*, {
+    });
+    const { data: errorsData } = useSWR('/api/error', {
         initialData: data.errors
-    }*/);
+    });
     const errors = errorsData?.errors;
 
     if (!allTime || !alive) return <LoaderComponent />;
@@ -120,5 +119,40 @@ const IndexPage = ({ data }) => {
         </Page>
     );
 };
+
+export async function getStaticProps({ params }) {
+    const alive =
+        (await aliveRoute(
+            {
+                method: 'GET'
+            },
+            null
+        )) ?? null;
+    const allTime =
+        (await allTimeRoute(
+            {
+                method: 'GET'
+            },
+            null
+        )) ?? null;
+    const errors =
+        (await errorsRoute(
+            {
+                method: 'GET'
+            },
+            null
+        )) ?? null;
+
+    return {
+        props: {
+            data: {
+                alive: alive,
+                allTime: allTime,
+                errors: errors
+            }
+        },
+        revalidate: 5
+    };
+}
 
 export default IndexPage;

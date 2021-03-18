@@ -8,7 +8,10 @@ const ErrorRoute = async ({ body, method }, res) => {
         }));
 
         res?.status(200)?.send({
-            errors: errors
+            errors: errors.map((error) => ({
+                ...error,
+                _id: error._id.toString()
+            }))
         });
         return errors;
     }
@@ -18,10 +21,12 @@ const ErrorRoute = async ({ body, method }, res) => {
     });
     await error.save();
 
-    res?.status(200)?.send({
+    const result = {
         ...error.toObject(),
         id: error._id
-    });
+    };
+    res?.status(200)?.send(result);
+    return result;
 };
 
 export default withConnect(ErrorRoute);
