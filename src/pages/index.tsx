@@ -121,7 +121,7 @@ const IndexPage = ({ data }) => {
 };
 
 export async function getStaticProps({ params }) {
-    const alive =
+    /* const alive =
         (await aliveRoute(
             {
                 method: 'GET'
@@ -141,14 +141,15 @@ export async function getStaticProps({ params }) {
                 method: 'GET'
             },
             null
-        )) ?? null;
+        )) ?? null; */
 
     return {
         props: {
             data: {
+                /*
                 alive: alive,
                 allTime: allTime,
-                errors: errors
+                errors: errors */
             }
         },
         revalidate: 5
