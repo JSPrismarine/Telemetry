@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "moment": "^2.29.1",
-        "mongoose": "^5.10.9",
+        "mongoose": "^5.12.5",
         "new-github-issue-url": "^0.2.1",
         "next": "^10.0.6",
         "next-seo": "^4.19.0",
