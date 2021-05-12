@@ -39,7 +39,7 @@
         "@types/jest": "26.0.13",
         "@types/mongoose": "5.10.3",
         "@types/next": "9.0.0",
-        "@types/node": "13.13.21",
+        "@types/node": "13.13.52",
         "@types/react": "17.0.3",
         "@types/recharts": "1.8.19",
         "@types/styled-components": "5.1.9",
