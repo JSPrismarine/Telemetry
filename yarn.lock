@@ -1035,7 +1035,7 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
-"@types/mongodb@*", "@types/mongodb@^3.5.27":
+"@types/mongodb@^3.5.27":
   version "3.6.6"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.6.6.tgz#d62300927564e03daa08794eb207ff4f760f9014"
   integrity sha512-ghYevKiSh/TGk2MAwSRZP7T1ilR9Pw8Fa7pT9GGVGZPUsWKdZjZ4G6LG3MqK2iXKdNba994F8W9ikA+qx2Eo3A==
@@ -1043,13 +1043,12 @@
     "@types/bson" "*"
     "@types/node" "*"
 
-"@types/mongoose@5.10.3":
-  version "5.10.3"
-  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.10.3.tgz#3bc6787245aa8ebbff4ed61da18f4775e0ec52cd"
-  integrity sha512-VfdnaFImXEJZZiuL2ID/ysZs4inOIjxwrAnUgkr5eum2O2BLhFkiSI0i87AwignVva1qWTJ3H3DyM0Rf4USJ4A==
+"@types/mongoose@5.11.96":
+  version "5.11.96"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.11.96.tgz#870fa0f3565bf2e8e0d4aa571ec6d342b196eeb8"
+  integrity sha512-keiY22ljJtXyM7osgScmZOHV6eL5VFUD5tQumlu+hjS++HND5nM8jNEdj5CSWfKIJpVwQfPuwQ2SfBqUnCAVRw==
   dependencies:
-    "@types/mongodb" "*"
-    "@types/node" "*"
+    mongoose "*"
 
 "@types/next@9.0.0":
   version "9.0.0"
@@ -5998,10 +5997,41 @@ mongodb@3.6.3:
   optionalDependencies:
     saslprep "^1.0.0"
 
+mongodb@3.6.8:
+  version "3.6.8"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.6.8.tgz#3e2632af81915b3ff99b7681121ca0895e8ed407"
+  integrity sha512-sDjJvI73WjON1vapcbyBD3Ao9/VN3TKYY8/QX9EPbs22KaCSrQ5rXo5ZZd44tWJ3wl3FlnrFZ+KyUtNH6+1ZPQ==
+  dependencies:
+    bl "^2.2.1"
+    bson "^1.1.4"
+    denque "^1.4.1"
+    optional-require "^1.0.3"
+    safe-buffer "^5.1.2"
+  optionalDependencies:
+    saslprep "^1.0.0"
+
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
+
+mongoose@*:
+  version "5.12.13"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.12.13.tgz#6707fb2f6284536bb6367c94ccc3ce85475a387d"
+  integrity sha512-QGn1FCzZ8Z+mMGVg8oR2kQw4NmhLloCHsw1NqKWg3Yr7WfPzkE4pe7s9P6o5pkYGsku17n9mqMHowne7EFK/zQ==
+  dependencies:
+    "@types/mongodb" "^3.5.27"
+    bson "^1.1.4"
+    kareem "2.3.2"
+    mongodb "3.6.8"
+    mongoose-legacy-pluralize "1.0.2"
+    mpath "0.8.3"
+    mquery "3.2.5"
+    ms "2.1.2"
+    regexp-clone "1.0.0"
+    safe-buffer "5.2.1"
+    sift "13.5.2"
+    sliced "1.0.1"
 
 mongoose@^5.10.9:
   version "5.11.15"
@@ -6035,6 +6065,17 @@ mquery@3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/mquery/-/mquery-3.2.3.tgz#bcf54fdfe3baf57b6a22f9b62b1ad5fa18ffe96a"
   integrity sha512-cIfbP4TyMYX+SkaQ2MntD+F2XbqaBHUYWk3j+kqdDztPWok3tgyssOZxMHMtzbV1w9DaSlvEea0Iocuro41A4g==
+  dependencies:
+    bluebird "3.5.1"
+    debug "3.1.0"
+    regexp-clone "^1.0.0"
+    safe-buffer "5.1.2"
+    sliced "1.0.1"
+
+mquery@3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/mquery/-/mquery-3.2.5.tgz#8f2305632e4bb197f68f60c0cffa21aaf4060c51"
+  integrity sha512-VjOKHHgU84wij7IUoZzFRU07IAxd5kWJaDmyUzQlbjHjyoeK5TNeeo8ZsFDtTYnSgpW6n/nMNIHvE3u8Lbrf4A==
   dependencies:
     bluebird "3.5.1"
     debug "3.1.0"
@@ -6476,6 +6517,11 @@ open@^7.3.0:
   dependencies:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
+
+optional-require@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/optional-require/-/optional-require-1.0.3.tgz#275b8e9df1dc6a17ad155369c2422a440f89cb07"
+  integrity sha512-RV2Zp2MY2aeYK5G+B/Sps8lW5NHAzE5QClbFP15j+PWmP+T9PxlJXBOOLoSAdgwFvS4t0aMR4vpedMkbHfh0nA==
 
 optionator@^0.8.1:
   version "0.8.3"
@@ -8026,6 +8072,11 @@ side-channel@^1.0.3, side-channel@^1.0.4:
     call-bind "^1.0.0"
     get-intrinsic "^1.0.2"
     object-inspect "^1.9.0"
+
+sift@13.5.2:
+  version "13.5.2"
+  resolved "https://registry.yarnpkg.com/sift/-/sift-13.5.2.tgz#24a715e13c617b086166cd04917d204a591c9da6"
+  integrity sha512-+gxdEOMA2J+AI+fVsCqeNn7Tgx3M9ZN9jdi95939l1IJ8cZsqS8sqpJyOkic2SJk+1+98Uwryt/gL6XDaV+UZA==
 
 sift@7.0.1:
   version "7.0.1"
