@@ -24,7 +24,7 @@ const PageProvider = ({ children }) => {
                 <span>&copy; 2020-2021 the JSPrismarine development team</span>
                 {' - '}
                 <span>
-                    Built by <a href="https://github.com/filfat">Filiph Sandström</a>
+                    Built by <a href="https://spsgroup.se">Filiph Sandström</a>
                 </span>
             </Footer>
         </Container>
