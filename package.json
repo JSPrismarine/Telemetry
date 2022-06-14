@@ -19,7 +19,7 @@
         "prettier:format": "prettier --config .prettierrc src/**/*.* --write"
     },
     "dependencies": {
-        "moment": "2.29.1",
+        "moment": "2.29.3",
         "mongoose": "5.10.9",
         "new-github-issue-url": "0.2.1",
         "next": "10.0.6",
