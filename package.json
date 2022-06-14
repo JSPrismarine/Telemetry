@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "moment": "2.29.3",
-        "mongoose": "5.10.9",
+        "mongoose": "5.10.19",
         "new-github-issue-url": "0.2.1",
         "next": "10.0.6",
         "next-seo": "4.19.0",
@@ -37,7 +37,7 @@
     "devDependencies": {
         "@types/enzyme": "3.10.12",
         "@types/jest": "26.0.24",
-        "@types/mongoose": "5.10.3",
+        "@types/mongoose": "5.10.5",
         "@types/next": "9.0.0",
         "@types/node": "13.13.21",
         "@types/react": "17.0.45",
