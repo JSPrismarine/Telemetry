@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "moment": "2.29.3",
-        "mongoose": "5.10.19",
+        "mongoose": "5.13.9",
         "new-github-issue-url": "0.2.1",
         "next": "10.0.9",
         "next-seo": "4.19.0",
