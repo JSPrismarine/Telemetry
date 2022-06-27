@@ -22,7 +22,7 @@
         "moment": "2.29.3",
         "mongoose": "5.13.14",
         "new-github-issue-url": "0.2.1",
-        "next": "10.0.9",
+        "next": "10.2.0",
         "next-seo": "4.19.0",
         "nprogress": "0.2.0",
         "react": "17.0.2",
