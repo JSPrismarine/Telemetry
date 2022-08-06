@@ -58,6 +58,6 @@
         "yarnhook": "0.6.0"
     },
     "peerDependencies": {
-        "postcss": "8.4.14"
+        "postcss": "8.4.16"
     }
 }
