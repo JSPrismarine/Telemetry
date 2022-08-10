@@ -42,7 +42,7 @@
         "@types/node": "13.13.21",
         "@types/react": "17.0.47",
         "@types/recharts": "1.8.23",
-        "@types/styled-components": "5.1.25",
+        "@types/styled-components": "5.1.26",
         "enzyme": "3.11.0",
         "eslint": "7.32.0",
         "eslint-plugin-import": "2.26.0",
