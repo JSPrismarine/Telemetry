@@ -53,7 +53,7 @@
         "postcss-preset-env": "6.7.1",
         "prettier": "2.7.1",
         "ts-jest": "26.5.6",
-        "typescript": "4.7.4",
+        "typescript": "4.8.2",
         "xo": "0.52.1",
         "yarnhook": "0.6.0"
     },
