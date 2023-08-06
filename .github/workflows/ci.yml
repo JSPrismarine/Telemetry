@@ -12,6 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         env:
             CI: true
+            MONGODB: ${{ secrets.MONGODB }}
         steps:
             - name: 🕶️ Checkout repository
               uses: actions/checkout@v3
