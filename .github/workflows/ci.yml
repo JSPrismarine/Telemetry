@@ -1,0 +1,37 @@
+name: 🧠 CI
+
+on:
+    push:
+        paths-ignore:
+            - '**.md'
+
+jobs:
+    test:
+        name: 🔬 Test
+        timeout-minutes: 10
+        runs-on: ubuntu-latest
+        env:
+            CI: true
+        steps:
+            - name: 🕶️ Checkout repository
+              uses: actions/checkout@v3
+
+            - name: 🏎️ Setup nodejs
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 'lts/*'
+                  cache: 'npm'
+
+            - name: 💾 Cache node modules
+              uses: actions/cache@v3
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-test-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-test-
+
+            - name: 📦 Download dependencies
+              run: npm ci
+
+            - name: 🧪 Test
+              run: npm run test
