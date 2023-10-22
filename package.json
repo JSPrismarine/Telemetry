@@ -32,7 +32,7 @@
         "recharts": "2.1.12",
         "sass": "1.54.8",
         "styled-components": "5.3.11",
-        "swr": "0.5.7"
+        "swr": "2.2.4"
     },
     "devDependencies": {
         "@types/enzyme": "3.10.15",
