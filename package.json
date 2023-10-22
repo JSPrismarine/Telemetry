@@ -31,7 +31,7 @@
         "react-syntax-highlighter": "15.5.0",
         "recharts": "2.1.12",
         "sass": "1.54.8",
-        "styled-components": "5.3.5",
+        "styled-components": "5.3.11",
         "swr": "0.5.7"
     },
     "devDependencies": {
@@ -42,7 +42,7 @@
         "@types/node": "13.13.52",
         "@types/react": "17.0.47",
         "@types/recharts": "1.8.26",
-        "@types/styled-components": "5.1.26",
+        "@types/styled-components": "5.1.29",
         "enzyme": "3.11.0",
         "eslint": "7.32.0",
         "eslint-plugin-import": "2.26.0",
