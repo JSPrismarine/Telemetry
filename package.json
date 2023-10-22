@@ -35,7 +35,7 @@
         "swr": "0.5.7"
     },
     "devDependencies": {
-        "@types/enzyme": "3.10.12",
+        "@types/enzyme": "3.10.15",
         "@types/jest": "26.0.24",
         "@types/mongoose": "5.11.96",
         "@types/next": "9.0.0",
