@@ -1,35 +1,38 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
+        "plugins": [
+            {
+                "name": "next"
+            }
         ],
+        "target": "ESNext",
+        "lib": ["dom", "dom.iterable", "ESNext"],
         "allowJs": true,
         "skipLibCheck": true,
-        "strict": false,
+        "strict": true,
         "forceConsistentCasingInFileNames": true,
         "noEmit": true,
         "esModuleInterop": true,
-        "module": "esnext",
-        "moduleResolution": "node",
+        "module": "ESNext",
+        "moduleResolution": "Node10",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "removeComments": false,
-        "jsx": "preserve"
+        "removeComments": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "downlevelIteration": false,
+        "strictNullChecks": true,
+        "baseUrl": ".",
+        "rootDir": "./",
+        "paths": {
+            "@/components/*": ["./src/components/*"],
+            "@/hooks/*": ["./src/hooks/*"],
+            "@/api/*": ["./src/api/*"],
+            "@/models/*": ["./src/models/*"],
+            "@/utils/*": ["./src/utils/*"],
+            "@/style/*": ["./src/scss/*"]
+        }
     },
-    "exclude": [
-        "dist",
-        "node_modules",
-        "out",
-        "public",
-        ".next",
-        "next.config.js"
-    ],
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx"
-    ]
+    "exclude": ["node_modules", "public"],
+    "include": ["next-env.d.ts", ".next/types/**/*.ts", "./src/@types", "./src/**/*.ts", "./src/**/*.tsx"]
 }

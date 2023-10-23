@@ -1,7 +1,7 @@
 import Error from '../../../models/error';
 import withConnect from '../../../hoc/withConnect';
 
-const AliveHeartbeatRoute = async ({ body, method, query }, res) => {
+const AliveHeartbeatRoute = async ({ query }: any, res: any) => {
     const error = await Error.findOne({
         _id: query.id
     });

@@ -1,7 +1,7 @@
 import Heartbeat from '../../../models/heartbeat';
 import withConnect from '../../../hoc/withConnect';
 
-const AliveHeartbeatRoute = async ({ body, method }, res) => {
+const AliveHeartbeatRoute = async ({}: any, res: any) => {
     const date = new Date();
     date.setMinutes(date.getMinutes() - 5);
 
@@ -20,7 +20,7 @@ const AliveHeartbeatRoute = async ({ body, method }, res) => {
             ...heartbeat.toObject()
         }))
         .reduce((arr, item) => {
-            const removed = arr.filter((i) => i.id !== item.id);
+            const removed = arr.filter((i: any) => i.id !== item.id);
             return [...removed, item];
         }, []);
 

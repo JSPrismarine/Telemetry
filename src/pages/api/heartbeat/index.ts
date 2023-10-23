@@ -1,7 +1,7 @@
 import Heartbeat from '../../../models/heartbeat';
 import withConnect from '../../../hoc/withConnect';
 
-const HeartbeatRoute = async ({ body, method }, res) => {
+const HeartbeatRoute = async ({ body, method }: any, res: any) => {
     if (method === 'GET') {
         const heartbeats = await Heartbeat.find({}, null, { sort: { _id: -1 } })
             .limit(2500)

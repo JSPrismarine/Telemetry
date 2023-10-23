@@ -36,4 +36,4 @@ const Error = new Schema(
     { versionKey: false }
 );
 
-export default mongoose.models.Error || mongoose.model('Error', Error);
+export default mongoose.models?.Error || mongoose.model('Error', Error);

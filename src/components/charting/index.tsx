@@ -51,20 +51,20 @@ const Container = styled.div`
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#c53bd1', '#82ca9d'];
 
-const Charting = (props) => {
-    const data: any[] = props.data?.map((beat) => ({
+const Charting = (props: any) => {
+    const data: any[] = props.data?.map((beat: any) => ({
         ...beat,
         id: beat.id.substring(0, 7)
     }));
-    const compareData: any[] = props.compare?.map((beat) => ({
+    const compareData: any[] = props.compare?.map((beat: any) => ({
         ...beat,
         id: beat.id.substring(0, 7)
     }));
 
     if (!data) return null;
 
-    const versions = [];
-    data.forEach((beat) => {
+    const versions: any[] = [];
+    data.forEach((beat: any) => {
         for (let i = 0; i < versions.length; i++) {
             if (versions[i].name === beat.version.split(':')[0]) {
                 versions[i].value += 1;
@@ -77,8 +77,8 @@ const Charting = (props) => {
         });
     });
 
-    const versionsCompare = [];
-    compareData.forEach((beat) => {
+    const versionsCompare: any[] = [];
+    compareData.forEach((beat: any) => {
         for (let i = 0; i < versionsCompare.length; i++) {
             if (versionsCompare[i].name === beat.version.split(':')[0]) {
                 versionsCompare[i].value += 1;
@@ -91,8 +91,8 @@ const Charting = (props) => {
         });
     });
 
-    const tps = [];
-    data.forEach((beat) => {
+    const tps: any[] = [];
+    data.forEach((beat: any) => {
         for (let i = 0; i < tps.length; i++) {
             if (tps[i].tps === beat.tps) {
                 tps[i].servers += 1;
@@ -116,13 +116,7 @@ const Charting = (props) => {
                             ))}
                         </Pie>
 
-                        <Pie
-                            data={versionsCompare}
-                            dataKey="value"
-                            outerRadius={90}
-                            innerRadius={70}
-                            label
-                        >
+                        <Pie data={versionsCompare} dataKey="value" outerRadius={90} innerRadius={70} label>
                             {versionsCompare.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
