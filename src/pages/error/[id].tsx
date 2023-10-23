@@ -1,3 +1,5 @@
+import type { GetStaticPaths, GetStaticProps } from 'next';
+
 import DefaultError from 'next/error';
 import ErrorApi from '../api/error/[id]';
 import ErrorsApi from '../api/error';
@@ -31,17 +33,14 @@ const CreateIssue = styled.a`
     color: #fff;
 `;
 
-const ServerPage = ({ data }) => {
-    const entry = data?.error;
+const ServerPage = ({ data }: any) => {
+    const entry = JSON.parse(data?.error || '{}');
 
-    if (!entry) return <DefaultError statusCode={404} />;
+    if (!entry?.error) return <DefaultError statusCode={404} />;
 
     return (
         <Page>
-            <NextSeo
-                title={`${entry?.error?.message} - JSPrismarine Telemetry`}
-                description={entry?.error?.stack}
-            />
+            <NextSeo title={`${entry?.error?.message} - JSPrismarine Telemetry`} description={entry?.error?.stack} />
 
             <ErrorHeader>Error: {entry?.error?.name}</ErrorHeader>
             <ErrorDate>{moment(entry?.timestamp).format('LLLL')}</ErrorDate>
@@ -50,21 +49,13 @@ const ServerPage = ({ data }) => {
             </ErrorVersion>
 
             <CodeWrapper>
-                <SyntaxHighlighter
-                    showLineNumbers
-                    wrapLongLines
-                    style={materialDark}
-                    language="javastacktrace"
-                >
+                <SyntaxHighlighter showLineNumbers wrapLongLines style={materialDark} language="javastacktrace">
                     {entry?.error?.stack || 'No stacktrace.'}
                 </SyntaxHighlighter>
             </CodeWrapper>
-        
+
             <CodeWrapper>
-                <SyntaxHighlighter
-                    showLineNumbers
-                    wrapLongLines
-                    style={materialDark}>
+                <SyntaxHighlighter showLineNumbers wrapLongLines style={materialDark}>
                     {entry?.error?.log || 'No log.'}
                 </SyntaxHighlighter>
             </CodeWrapper>
@@ -74,10 +65,10 @@ const ServerPage = ({ data }) => {
                     href={newIssue({
                         user: 'JSPrismarine',
                         repo: 'JSPrismarine',
-                        title: `Bug: ${entry.error.name}.`,
+                        title: `Bug: ${entry?.error?.name}.`,
                         body: `**JSPrismarine version:** ${
                             entry.version ?? 'UNKNOWN'
-                        }\n\n\n**Stack trace:**\n\`\`\`javascript\n${entry.error.stack}\n\`\`\``
+                        }\n\n\n**Stack trace:**\n\`\`\`javascript\n${entry?.error?.stack}\n\`\`\``
                     })}
                 >
                     Create GitHub Issue
@@ -87,7 +78,7 @@ const ServerPage = ({ data }) => {
     );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
     const errors = await ErrorsApi(
         {
             method: 'GET'
@@ -97,22 +88,22 @@ export async function getStaticPaths() {
 
     return {
         paths: errors
-            ?.map((error) => ({
+            ?.map((error: any) => ({
                 params: { id: `${error._id}` }
             }))
-            .filter((a) => a.params.id),
+            .filter((a: any) => a.params.id),
         fallback: true
     };
-}
+};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
         const error =
             (await ErrorApi(
                 {
                     method: 'GET',
                     query: {
-                        id: params.id
+                        id: params!.id
                     }
                 },
                 null
@@ -121,7 +112,7 @@ export async function getStaticProps({ params }) {
         return {
             props: {
                 data: {
-                    error: JSON.parse(JSON.stringify(error)) // Hack to stop next from complaining
+                    error: JSON.stringify(error) // Hack to stop next from complaining
                 }
             },
             revalidate: 10
@@ -133,6 +124,6 @@ export async function getStaticProps({ params }) {
             revalidate: 10
         };
     }
-}
+};
 
 export default ServerPage;

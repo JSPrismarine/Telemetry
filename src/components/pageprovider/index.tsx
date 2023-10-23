@@ -15,7 +15,7 @@ const Footer = styled.footer`
     font-size: 0.75rem;
 `;
 
-const PageProvider = ({ children }) => {
+const PageProvider = ({ children }: any) => {
     return (
         <Container>
             <Header />
@@ -24,7 +24,7 @@ const PageProvider = ({ children }) => {
                 <span>&copy; 2020-2021 the JSPrismarine development team</span>
                 {' - '}
                 <span>
-                    Built by <a href="https://spsgroup.se">Filiph Sandström</a>
+                    Built by <a href="https://nordcom.io/">Filiph Siitam Sandström</a>
                 </span>
             </Footer>
         </Container>

@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
-const withConnect = (handler) => async (req, res) => {
+const withConnect = (handler: any) => async (req: any, res: any) => {
     if (!mongoose.connection.readyState) {
-        mongoose.connect(process.env.MONGODB as string);
+        mongoose.connect(process.env.MONGODB_URI as string);
     }
 
     return handler(req, res);

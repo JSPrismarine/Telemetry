@@ -1,4 +1,4 @@
-const HearbeatList = ({ children }) => {
+const HearbeatList = ({ children }: any) => {
     return (
         <table>
             <tr>

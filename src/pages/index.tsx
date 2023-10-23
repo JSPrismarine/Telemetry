@@ -1,4 +1,5 @@
 import Charting from '../components/charting';
+import type { GetStaticProps } from 'next';
 import LoaderComponent from '../components/loader';
 import Page from '../components/page';
 import aliveRoute from './api/heartbeat/alive';
@@ -43,16 +44,46 @@ const InfoBlock = styled.div`
     }
 `;
 
-const IndexPage = ({ data }) => {
-    const { data: alive } = useSWR('/api/heartbeat/alive', {
-        initialData: data.alive
-    });
-    const { data: allTime } = useSWR('/api/heartbeat/all-time', {
-        initialData: data.allTime
-    });
-    const { data: errorsData } = useSWR('/api/error', {
-        initialData: data.errors
-    });
+const IndexPage = ({ data }: any) => {
+    const { data: alive } = useSWR(
+        ['/api/heartbeat/alive'],
+        () =>
+            aliveRoute(
+                {
+                    method: 'GET'
+                },
+                null
+            ),
+        {
+            fallbackData: JSON.parse(data.alive || '{}')
+        }
+    );
+    const { data: allTime } = useSWR(
+        ['/api/heartbeat/all-time'],
+        () =>
+            allTimeRoute(
+                {
+                    method: 'GET'
+                },
+                null
+            ),
+        {
+            fallbackData: JSON.parse(data.allTime || '{}')
+        }
+    );
+    const { data: errorsData } = useSWR(
+        ['/api/error'],
+        () =>
+            errorsRoute(
+                {
+                    method: 'GET'
+                },
+                null
+            ),
+        {
+            fallbackData: JSON.parse(data.errors || '{}')
+        }
+    );
     const errors = errorsData?.errors;
 
     if (!allTime || !alive) return <LoaderComponent />;
@@ -71,7 +102,7 @@ const IndexPage = ({ data }) => {
                 <InfoBlock>
                     <div>Current Players</div>
                     <span>
-                        {alive?.heartbeats?.map((a) => a.player_count).reduce((a, b) => a + b, 0) ??
+                        {alive?.heartbeats?.map((a: any) => a.player_count).reduce((a: any, b: any) => a + b, 0) ??
                             '...'}
                     </span>
                 </InfoBlock>
@@ -79,7 +110,7 @@ const IndexPage = ({ data }) => {
                     <div>Total Uptime (hrs)</div>
                     <span>
                         {Math.round(
-                            (alive?.heartbeats?.map((a) => a.uptime).reduce((a, b) => a + b, 0) /
+                            (alive?.heartbeats?.map((a: any) => a.uptime).reduce((a: any, b: any) => a + b, 0) /
                                 1000 /
                                 60 /
                                 60) *
@@ -95,19 +126,15 @@ const IndexPage = ({ data }) => {
                 <InfoBlock>
                     <div>Crashes (24hrs)</div>
                     <span>
-                        {errors?.filter(
-                            (a) =>
-                                Date.now() - new Date(a.timestamp).getTime() < 24 * 60 * 60 * 1000
-                        ).length ?? '...'}
+                        {errors?.filter((a: any) => Date.now() - new Date(a.timestamp).getTime() < 24 * 60 * 60 * 1000)
+                            .length ?? '...'}
                     </span>
                 </InfoBlock>
                 <InfoBlock>
                     <div>Crashes (7d)</div>
                     <span>
                         {errors?.filter(
-                            (a) =>
-                                Date.now() - new Date(a.timestamp).getTime() <
-                                7 * 24 * 60 * 60 * 1000
+                            (a: any) => Date.now() - new Date(a.timestamp).getTime() < 7 * 24 * 60 * 60 * 1000
                         ).length ?? '...'}
                     </span>
                 </InfoBlock>
@@ -120,8 +147,8 @@ const IndexPage = ({ data }) => {
     );
 };
 
-export async function getStaticProps({ params }) {
-    /* const alive =
+export const getStaticProps: GetStaticProps = async ({}) => {
+    const alive =
         (await aliveRoute(
             {
                 method: 'GET'
@@ -141,19 +168,18 @@ export async function getStaticProps({ params }) {
                 method: 'GET'
             },
             null
-        )) ?? null; */
+        )) ?? null;
 
     return {
         props: {
             data: {
-                /*
-                alive: alive,
-                allTime: allTime,
-                errors: errors */
+                alive: JSON.stringify(alive),
+                allTime: JSON.stringify(allTime),
+                errors: JSON.stringify(errors)
             }
         },
         revalidate: 5
     };
-}
+};
 
 export default IndexPage;

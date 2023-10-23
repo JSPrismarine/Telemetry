@@ -1,7 +1,7 @@
 import Error from '../../../models/error';
 import withConnect from '../../../hoc/withConnect';
 
-const ErrorRoute = async ({ body, method }, res) => {
+const ErrorRoute = async ({ body, method }: any, res: any) => {
     if (method === 'GET') {
         const errors = (await Error.find({}, null, { sort: { _id: -1 } })).map((error) => ({
             ...error.toObject()

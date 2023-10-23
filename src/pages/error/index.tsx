@@ -46,14 +46,14 @@ const ListEntry = styled.a`
 `;
 
 const ErrorPage = () => {
-    const { data } = useSWR(`/api/error`);
+    const { data } = useSWR([`/api/error`]);
 
     if (!data) return <LoaderComponent />;
 
     return (
         <Page>
             <List>
-                {data?.errors?.map?.((entry) => (
+                {data?.errors?.map?.((entry: any) => (
                     <Link key={entry._id} href={`/error/${entry._id}`} passHref>
                         <ListEntry>
                             <div>{moment(entry.timestamp).format('MM/DD/YYYY MM:HH:SS')}</div>

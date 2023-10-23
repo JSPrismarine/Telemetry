@@ -12,7 +12,7 @@ const Content = styled.div`
     width: 100vw;
 `;
 
-const Page = ({ children }) => {
+const Page = ({ children }: any) => {
     return (
         <Main>
             <Content>{children}</Content>

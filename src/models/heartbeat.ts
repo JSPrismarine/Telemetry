@@ -50,4 +50,4 @@ const Heartbeat = new Schema(
     { versionKey: false }
 );
 
-export default mongoose.models.Heartbeat || mongoose.model('Heartbeat', Heartbeat);
+export default mongoose.models?.Heartbeat || mongoose.model('Heartbeat', Heartbeat);

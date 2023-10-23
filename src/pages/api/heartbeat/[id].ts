@@ -1,7 +1,7 @@
 import Heartbeat from '../../../models/heartbeat';
 import withConnect from '../../../hoc/withConnect';
 
-const AliveHeartbeatRoute = async ({ body, method, query }, res) => {
+const AliveHeartbeatRoute = async ({ query }: any, res: any) => {
     const heartbeats = await Heartbeat.find(
         {
             id: query.id
@@ -11,7 +11,7 @@ const AliveHeartbeatRoute = async ({ body, method, query }, res) => {
     ).exec();
 
     res.status(200).send({
-        heartbeats: heartbeats.map((heartbeat) => ({
+        heartbeats: heartbeats.map((heartbeat: any) => ({
             ...heartbeat.toObject()
         }))
     });
